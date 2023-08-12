@@ -22,13 +22,18 @@ unzip codebleu
 
 ## Reproducing experiments
 
-Before running the experiments, unzip the data.zip somewhere and make sure to adapt the configuration files to
-specify the path towards the location where you unzipped the data. This data contains the results of the Refactory run on the student solutions. Potentially, you could run the "prepare_refactory" notebook to rerun/reproduce the repair process yourself if you have the [Refactory](https://github.com/githubhuyang/refactory) automated repair tool installed somewhere on your computer, but we already did that for you. 
+### Refactory run data 
+
+Before running the experiments, unzip the data.zip. If you unzip it in another location than the edmpr repository, make sure to adapt the configuration files (configs/cong.json) to specify the path towards the location where you unzipped the data. This data contains the results of the Refactory run on the student solutions. Potentially, you could run the "prepare_refactory" notebook to rerun/reproduce the repair process yourself if you have the [Refactory](https://github.com/githubhuyang/refactory) automated repair tool installed somewhere on your computer, but we already did that for you. 
+
+### CodeBLEU metric. 
+
+We found a reimplementation of CodeBLEU [here](https://huggingface.co/spaces/dvitel/codebleu). But it seems to be not maintainted anymore so we updated some part of the code; the full code is quite large, so we ziped it. That's inneficient, very bad code practice, but in the meantime it will do.
+
+So, unzip the "codebleu" zip file which contains the code for running the codebleu metric. 
+If you unzip it in another location than than the edmp repository, then, in the src/distance python file, adapt the "kw_dir" and "langso_dir" keyword arguments to specify the path towards the location where you unzip it. You might also need to change the importation on top of the file. 
+
+### Running the experiments
 
 Both experiments are ran in their corresponding jupyter notebooks (experiment1.ipynb, experiment2.ipynb).
-
-### Notes about codebleu
-
-We found a reimplementation of CodeBLEU [here](https://huggingface.co/spaces/dvitel/codebleu). But it seems to be not maintainted anymore so we updated some minor part of it; that's why we needed to copy the whole repository here. That's inneficient, but in the meantime it will do.
-
 

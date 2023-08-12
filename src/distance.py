@@ -67,8 +67,8 @@ def bleu_dist(buggy, corrected):
 def codebleu_dist(buggy, corrected):
     return 1 - (calc_codebleu(lang="python", 
                          references = [[buggy]], predictions = [corrected], 
-                         kw_dir="/home/koutchc1/codebleu", 
-                         langso_dir="/home/koutchc1/codebleu/my-languages.so")['CodeBLEU'])
+                         kw_dir="../codebleu", #TODO: PATH_TOWARDS_CODEBLEU_DIRECTORY
+                         langso_dir="../codebleu/my-languages.so")['CodeBLEU']) #TODO: PATH_TOWARDS_CODEBLEU_DIRECTORY
 
 scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL', 'rougeLsum'])
     
