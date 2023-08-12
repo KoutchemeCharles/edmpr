@@ -1,11 +1,14 @@
-import ast
-from edist.sed import (sed_string, standard_sed)
+import os, ast
 from edist.ted import standard_ted
-from src.utils.code import ast_to_passen_repre
+from edist.sed import sed_string, standard_sed
 from tokenize_rt import src_to_tokens
-from nltk.translate.bleu_score import sentence_bleu
 from rouge_score import rouge_scorer
-from codebleu.my_codebleu import calc_codebleu
+from nltk.translate.bleu_score import sentence_bleu
+from src.utils.code import ast_to_passen_repre
+from src.codebleu.my_codebleu import calc_codebleu
+
+# e.g. /home/x/edmpr/
+REPO_ABSOLUTE_PATH = "" # TODO: change this to the absolute path of the edmpr repo 
 
 # Classical distances
 
@@ -67,8 +70,8 @@ def bleu_dist(buggy, corrected):
 def codebleu_dist(buggy, corrected):
     return 1 - (calc_codebleu(lang="python", 
                          references = [[buggy]], predictions = [corrected], 
-                         kw_dir="../codebleu", #TODO: PATH_TOWARDS_CODEBLEU_DIRECTORY
-                         langso_dir="../codebleu/my-languages.so")['CodeBLEU']) #TODO: PATH_TOWARDS_CODEBLEU_DIRECTORY
+                         kw_dir=os.path.join(REPO_ABSOLUTE_PATH, "src/codebleu"),
+                         langso_dir=os.path.join(REPO_ABSOLUTE_PATH, "src/codebleu/my-languages.so"))['CodeBLEU'])
 
 scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL', 'rougeLsum'])
     
